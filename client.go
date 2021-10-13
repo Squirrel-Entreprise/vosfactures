@@ -87,7 +87,8 @@ func (vf *VosFactures) ListClients(page int) ([]Client, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode > 300 {
-		err := fmt.Errorf("%s\n%v", resp.Status, resp)
+		dumpRequest(req)
+		err := fmt.Errorf("%s", resp.Status)
 		return clients, err
 	}
 
@@ -115,7 +116,8 @@ func (vf *VosFactures) GetClient(clientID int64) (*Client, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode > 300 {
-		err := fmt.Errorf("%s\n%v", resp.Status, resp)
+		dumpRequest(req)
+		err := fmt.Errorf("status code : %v", resp.Status)
 		return &client, err
 	}
 
@@ -182,7 +184,8 @@ func (vf *VosFactures) DeleteClient(clientID int64) error {
 	defer resp.Body.Close()
 
 	if resp.StatusCode > 300 {
-		err := fmt.Errorf("%s\n%v", resp.Status, resp)
+		dumpRequest(req)
+		err := fmt.Errorf("status code : %v", resp.Status)
 		return err
 	}
 

@@ -158,7 +158,8 @@ func (vf *VosFactures) ListProducts(page int) ([]Product, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode > 300 {
-		err := fmt.Errorf("%s\n%v", resp.Status, resp)
+		dumpRequest(req)
+		err := fmt.Errorf("status code : %v", resp.Status)
 		return products, err
 	}
 
@@ -186,7 +187,8 @@ func (vf *VosFactures) GetProduct(productID int64) (*Product, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode > 300 {
-		err := fmt.Errorf("%s\n%v", resp.Status, resp)
+		dumpRequest(req)
+		err := fmt.Errorf("status code : %v", resp.Status)
 		return &product, err
 	}
 
@@ -254,7 +256,8 @@ func (vf *VosFactures) DeleteProduct(productID int64) error {
 	defer resp.Body.Close()
 
 	if resp.StatusCode > 300 {
-		err := fmt.Errorf("%s\n%v", resp.Status, resp)
+		dumpRequest(req)
+		err := fmt.Errorf("%s", resp.Status)
 		return err
 	}
 

@@ -268,7 +268,8 @@ func (vf *VosFactures) ListInvoices(page int) ([]Document, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode > 300 {
-		err := fmt.Errorf("%s\n%v", resp.Status, resp)
+		dumpRequest(req)
+		err := fmt.Errorf("status code : %v", resp.Status)
 		return invoices, err
 	}
 
@@ -296,7 +297,8 @@ func (vf *VosFactures) GetInvoice(invoiceID int64) (*Document, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode > 300 {
-		err := fmt.Errorf("%s\n%v", resp.Status, resp)
+		dumpRequest(req)
+		err := fmt.Errorf("status code : %v", resp.Status)
 		return &document, err
 	}
 
@@ -333,7 +335,9 @@ func (vf *VosFactures) UpdateInvoice(document *Document) (*Document, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode > 300 {
-		err := fmt.Errorf("%s\n%v", resp.Status, resp)
+		dumpRequest(req)
+		dumpPayload(p)
+		err := fmt.Errorf("%s\n%s", resp.Status, d)
 		return document, err
 	}
 
@@ -361,7 +365,8 @@ func (vf *VosFactures) DeleteInvoice(invoiceID int64) error {
 	defer resp.Body.Close()
 
 	if resp.StatusCode > 300 {
-		err := fmt.Errorf("%s\n%v", resp.Status, resp)
+		dumpRequest(req)
+		err := fmt.Errorf("status code : %v", resp.Status)
 		return err
 	}
 
@@ -384,7 +389,8 @@ func (vf *VosFactures) SendInvoiceByMail(invoiceID int64) error {
 	defer resp.Body.Close()
 
 	if resp.StatusCode > 300 {
-		err := fmt.Errorf("%s\n%v", resp.Status, resp)
+		dumpRequest(req)
+		err := fmt.Errorf("status code : %v", resp.Status)
 		return err
 	}
 

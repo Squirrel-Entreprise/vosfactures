@@ -81,7 +81,8 @@ func (vf *VosFactures) ListCategories(page int) ([]Category, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode > 300 {
-		err := fmt.Errorf("%s\n%v", resp.Status, resp)
+		dumpRequest(req)
+		err := fmt.Errorf("%s", resp.Status)
 		return categories, err
 	}
 
@@ -109,7 +110,8 @@ func (vf *VosFactures) GetCategory(categoryID int64) (*Category, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode > 300 {
-		err := fmt.Errorf("%s\n%v", resp.Status, resp)
+		dumpRequest(req)
+		err := fmt.Errorf("status code : %v", resp.Status)
 		return &category, err
 	}
 
@@ -177,7 +179,8 @@ func (vf *VosFactures) DeleteCategory(categoryID int64) error {
 	defer resp.Body.Close()
 
 	if resp.StatusCode > 300 {
-		err := fmt.Errorf("%s\n%v", resp.Status, resp)
+		dumpRequest(req)
+		err := fmt.Errorf("%s", resp.Status)
 		return err
 	}
 

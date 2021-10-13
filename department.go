@@ -198,7 +198,8 @@ func (vf *VosFactures) ListDepartments(page int) ([]Department, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode > 300 {
-		err := fmt.Errorf("%s\n%v", resp.Status, resp)
+		dumpRequest(req)
+		err := fmt.Errorf("status code : %v", resp.Status)
 		return departments, err
 	}
 
@@ -226,7 +227,8 @@ func (vf *VosFactures) GetDepartment(departmentID int64) (*Department, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode > 300 {
-		err := fmt.Errorf("%s\n%v", resp.Status, resp)
+		dumpRequest(req)
+		err := fmt.Errorf("status code : %v", resp.Status)
 		return &department, err
 	}
 
@@ -294,7 +296,8 @@ func (vf *VosFactures) DeleteDepartment(departmentID int64) error {
 	defer resp.Body.Close()
 
 	if resp.StatusCode > 300 {
-		err := fmt.Errorf("%s\n%v", resp.Status, resp)
+		dumpRequest(req)
+		err := fmt.Errorf("status code : %v", resp.Status)
 		return err
 	}
 

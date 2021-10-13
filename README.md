@@ -1,5 +1,8 @@
 # VosFactures
 
+Implémentation sommaire de l'API VosFactures en Golang.
+Ce projet est en cours de réalisation, il est suffisamment complet pour nos besoins actuellement, pour toutes corrections ou améliorations je serai ravis de merge vos pull requests
+
 ### Doc officiel
 [https://github.com/vosfactures/api](https://github.com/vosfactures/api)
 
@@ -297,3 +300,10 @@ if err := vf.DeleteInvoice(vfInv.ID); err != nil {
 }
 ```
 
+#### Envoyer une facture par email
+
+```go
+if err := vf.SendInvoiceByMail(vfInv.ID); err != nil {
+    log.Println(err)
+}
+```
