@@ -1,15 +1,16 @@
-# VosFactures
+# Golang VosFactures
 
 Implémentation sommaire de l'API VosFactures en Golang.
-Ce projet est en cours de réalisation, il est suffisamment complet pour nos besoins actuellement, pour toutes corrections ou améliorations je serai ravis de merge vos pull requests
+
+_Ce projet n'est pas complet, il l'est suffisamment pour les fonctionnalités de bases à savoir créer et modifier un département, un client, une catégorie, un produit, une facture, pour toutes corrections ou améliorations, je serai ravis de merge vos pull requests._
 
 ### Doc officiel
 [https://github.com/vosfactures/api](https://github.com/vosfactures/api)
 
 ### Point de départ
 ```json
-t := "xxxyyyzz"
-a := "votrecompte"
+t := "xxxyyyzz" // token Vosfactures
+a := "votrecompte" // utilisateur Vosfactures
 vf := vosfactures.New(t, a)
 ```
 
